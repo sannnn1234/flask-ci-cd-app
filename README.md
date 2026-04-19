@@ -90,3 +90,19 @@ sudo systemctl restart nginx
 ```
 ![CI/CD Pipeline](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/deploy.png)
 
+## GitHub Secrets
+Add in GitHub → Settings → Secrets
+```bash
+STAGING_HOST
+```
+```bash
+STAGING_USER
+```
+```bash
+STAGING_SSH_KEY
+```
+```bash
+MONGO_URI
+```
+
+
