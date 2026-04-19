@@ -47,7 +47,7 @@ pipeline {
                         if [ ! -d "$APP_DIR" ]; then
                             sudo mkdir -p "$APP_DIR"
                             sudo chown -R ubuntu:ubuntu "$APP_DIR"
-                            git clone -b staging https://github.com/Avinashsain/flask-ci-cd-app.git "$APP_DIR"
+                            git clone -b staging https://github.com/sannnn1234/flask-ci-cd-app.git "$APP_DIR"
                             cd "$APP_DIR"
                         else
                             cd "$APP_DIR"
@@ -97,7 +97,7 @@ pipeline {
                         if [ ! -d "$APP_DIR" ]; then
                             sudo mkdir -p "$APP_DIR"
                             sudo chown -R ubuntu:ubuntu "$APP_DIR"
-                            git clone -b main https://github.com/Avinashsain/flask-ci-cd-app.git "$APP_DIR"
+                            git clone -b master https://github.com/sannnn1234/flask-ci-cd-app.git "$APP_DIR"
                             cd "$APP_DIR"
                         else
                             cd "$APP_DIR"
@@ -106,7 +106,7 @@ pipeline {
                                 echo "Backed up .env"
                             fi
                             git fetch origin
-                            git reset --hard origin/main
+                            git reset --hard origin/master
                             if [ -f "/tmp/flask_app_env_backup" ]; then
                                 cp /tmp/flask_app_env_backup .env
                                 echo "Restored .env"
