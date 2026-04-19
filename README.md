@@ -6,7 +6,7 @@ using both Jenkins and GitHub Actions.
 
 ## Project Structure
 ```bash
-flask-app/
+flask-ci-cd-app/
 │── app.py
 │── requirements.txt
 │── .env
