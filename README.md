@@ -106,3 +106,10 @@ MONGO_URI
 ```
 ![GitHub Secrets](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/action.png)
 
+## Deployment Flow
+1. Push to staging branch
+2. GitHub Actions runs CI
+3. Deploys to EC2
+4. Restarts Flask service
+5. Nginx serves app
+
