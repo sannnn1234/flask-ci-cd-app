@@ -7,6 +7,9 @@ on:
 permissions:
   contents: read
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
 # ----------- CI -----------
   ci:
@@ -26,7 +29,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: "3.11"
 
       - name: Install & Test
         run: |
@@ -34,7 +37,7 @@ jobs:
           pip install -r requirements.txt pytest pylint bandit
 
           pylint app.py || true
-          bandit -r . -s B104,B101 || true  # Add || true to continue on failure
+          bandit -r . -s B104,B101 || true
           pytest -v
 
 
@@ -56,9 +59,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.STAGING_USER }}@${{ secrets.STAGING_HOST }} \
           "MONGO_URI='${MONGO_URI}' bash -s" << EOF
           set -e
-
           APP_DIR="/var/www/flask-app"
-          echo "🚀 Staging Deploy"
 
           sudo rm -rf \$APP_DIR
           sudo mkdir -p \$APP_DIR
@@ -76,23 +77,17 @@ jobs:
           source venv/bin/activate
 
           pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install gunicorn
+          pip install -r requirements.txt gunicorn
 
           sudo systemctl daemon-reload
-          sudo systemctl enable flask-app
-          sudo systemctl restart flask-app
-
-          sudo systemctl restart nginx
-
-          echo "✅ Staging Done"
+          sudo systemctl restart flask-app nginx
           EOF
 
 
 # ----------- PRODUCTION -----------
   deploy-production:
     needs: ci
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
@@ -107,9 +102,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }} \
           "MONGO_URI='${MONGO_URI}' bash -s" << EOF
           set -e
-
           APP_DIR="/var/www/flask-app"
-          echo "🚀 Production Deploy"
 
           sudo rm -rf \$APP_DIR
           sudo mkdir -p \$APP_DIR
@@ -127,14 +120,8 @@ jobs:
           source venv/bin/activate
 
           pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install gunicorn
+          pip install -r requirements.txt gunicorn
 
           sudo systemctl daemon-reload
-          sudo systemctl enable flask-app
-          sudo systemctl restart flask-app
-
-          sudo systemctl restart nginx
-
-          echo "✅ Production Done"
+          sudo systemctl restart flask-app nginx
           EOF
