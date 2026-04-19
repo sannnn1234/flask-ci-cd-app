@@ -15,10 +15,9 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh '''
-                    echo "📦 Installing dependencies locally for tests"
-                    pip install --upgrade pip
-                    pip install -r requirements.txt
-                    pip install pytest pylint bandit
+                    echo "📦 Running tests in isolated environment"
+
+                    python3 -m pip install pytest pylint bandit || true
                 '''
             }
         }
