@@ -104,5 +104,5 @@ STAGING_SSH_KEY
 ```bash
 MONGO_URI
 ```
-
+![GitHub Secrets](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/action.png)
 
