@@ -113,5 +113,5 @@ MONGO_URI
 4. Restarts Flask service
 5. Nginx serves app
 
-![Deployment Flow](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/pipline.png)
+![Deployment Flow](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/pipeline.png)
 
