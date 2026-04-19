@@ -57,6 +57,8 @@ def delete_student(student_id):
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", debug=True, port=5005)
+    port = int(os.getenv("PORT", "5005"))
+    debug_mode = os.getenv("FLASK_DEBUG", "").strip().lower() in {"1", "true", "yes", "on"}
+    app.run(host="0.0.0.0", debug=debug_mode, port=port)
 
 
