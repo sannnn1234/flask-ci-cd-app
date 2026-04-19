@@ -137,7 +137,7 @@ http://<EC2-PUBLIC-IP>
 5. Deploy Production (branch: main)
 
 ![Jenkins CI/CD Pipeline](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/jenkins.png)
-![Jenkins CI/CD Pipeline](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/jenkins1.png)
 ![Jenkins CI/CD Pipeline](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/jenkins2.png)
+![Jenkins CI/CD Pipeline](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/jenkins3.png)
 
 
