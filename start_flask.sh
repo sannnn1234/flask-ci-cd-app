@@ -22,5 +22,3 @@ echo "Restarting Flask service..."
 sudo systemctl restart flask-app
 
 echo "Deployment successful!"
-
-"mongodb://localhost:27017/test_student_db"

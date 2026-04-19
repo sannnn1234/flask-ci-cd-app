@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for
-from flask_pymongo import PyMongo
+import os
+
 from bson.objectid import ObjectId
 from dotenv import load_dotenv
-import os
+from flask import Flask, redirect, render_template, request, url_for
+from flask_pymongo import PyMongo
 
 # Load env vars
 load_dotenv()
@@ -12,6 +13,10 @@ app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 app.secret_key = os.getenv("SECRET_KEY")
 
 mongo = PyMongo(app)
+
+
+def is_truthy(value: str | None) -> bool:
+    return (value or "").strip().lower() in {"1", "true", "yes", "on"}
 
 # Home page -> list students
 @app.route('/')
@@ -57,7 +62,12 @@ def delete_student(student_id):
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
+<<<<<<< HEAD
+    port = int(os.getenv("PORT", "5005"))
+    app.run(host="0.0.0.0", debug=is_truthy(os.getenv("FLASK_DEBUG")), port=port)
+=======
     debug_mode = os.getenv("FLASK_DEBUG", "false").lower() == "true"
     app.run(host="0.0.0.0", port=5005, debug=debug_mode)
+>>>>>>> main
 
 
