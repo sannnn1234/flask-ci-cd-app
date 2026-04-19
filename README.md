@@ -117,5 +117,5 @@ MONGO_URI
 
 ![Deployment Flow](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/production.png)
 
-![Deployment Flow](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/staging.png)
+![Deployment Flow](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/stagings.png)
 
