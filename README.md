@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Flask App CI/CD Pipeline
 
 ## Overview
@@ -223,4 +222,4 @@ MONGO_URI
 ```
 
 
->>>>>>> main
+
