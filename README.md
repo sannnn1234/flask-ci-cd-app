@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Flask App CI/CD Pipeline
 
 ## Overview
@@ -237,5 +236,3 @@ http://<EC2-PUBLIC-IP>
 ![Jenkins CI/CD Pipeline](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/jenkins2.png)
 ![Jenkins CI/CD Pipeline](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/jenkins3.png)
 
-
->>>>>>> main
