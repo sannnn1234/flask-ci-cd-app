@@ -8,7 +8,6 @@ permissions:
   contents: read
 
 jobs:
-
 # ----------- CI -----------
   ci:
     runs-on: ubuntu-latest
