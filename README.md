@@ -15,7 +15,7 @@ flask-app/
 |-- start_flask.sh
 |-- Jenkinsfile
 |-- .github/workflows/deploy.yml
-`-- templates/
+|-- templates/
 ```
 
 ## Local Setup
