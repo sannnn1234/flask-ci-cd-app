@@ -22,6 +22,7 @@ git clone https://github.com/your-username/flask-ci-cd-app.git
 cd flask-ci-cd-app
 pip install -r requirements.txt
 python app.py
-
-![Local Setup](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/Screenshot/localterminal.png)
 ```
+![Local Setup](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/localterminal.png)
+
+![Local Setup](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/localrunflaskapp.png)
