@@ -1,130 +1,115 @@
-# Student Registration System
+# Flask App CI/CD Pipeline
 
-A simple **Flask** web application to manage student records with **MongoDB** as the backend database. Users can **add, view, update, and delete** student details.
-
----
-
-## Features
-
-* List all students on the home page
-* Add a new student
-* Update existing student details
-* Delete a student with confirmation
-* Simple and responsive UI using Bootstrap
-
----
-
-## Tech Stack
-
-* **Backend:** Python, Flask
-* **Database:** MongoDB (via Flask-PyMongo)
-* **Frontend:** HTML, Jinja2 templates, Bootstrap 5
-* **Environment Variables:** Managed via `.env` file
-
----
-
-## Setup Instructions
-
-### 1. Clone the repository
-
-```bash
-git clone <your-repo-url>
-cd <repo-folder>
-```
-
-### 2. Create and activate a virtual environment
-
-```bash
-python -m venv venv
-# Activate venv
-# Windows:
-venv\Scripts\activate
-# Linux / Mac:
-source venv/bin/activate
-```
-
-### 3. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-**`requirements.txt` example:**
-
-```
-Flask
-Flask-PyMongo
-python-dotenv
-bson
-```
-
-### 4. Configure environment variables
-
-Create a `.env` file in the project root:
-
-```
-MONGO_URI=<your-mongodb-connection-string>
-SECRET_KEY=<your-secret-key>
-```
-
-### 5. Run the application
-
-```bash
-python app.py
-```
-
-Open your browser at: [http://localhost:8000](http://localhost:8000)
-
----
+## Overview
+This repository contains a Flask web application with automated CI/CD pipelines
+using both Jenkins and GitHub Actions.
 
 ## Project Structure
-
+```bash
+flask-ci-cd-app/
+│── app.py
+│── requirements.txt
+│── .env
+│── templates/
+│── .github/workflows/deploy.yml
+│── start_flask.sh
+│── test_app.py
+│── Jenkinsfile
 ```
-project/
-│
-├── templates/
-│   ├── base.html
-│   ├── index.html
-│   ├── add_student.html
-│   ├── update_student.html
-│
-├── app.py
-├── requirements.txt
-└── .env
+## Local Setup
+```bash
+git clone https://github.com/your-username/flask-ci-cd-app.git
+cd flask-ci-cd-app
+pip install -r requirements.txt
+python app.py
+```
+![Local Setup](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/localterminal.png)
+
+![Local Setup](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/localrunflaskapp.png)
+
+## EC2 Setup
+```bash
+sudo apt update
+sudo apt install python3-venv python3-pip nginx -y
+```
+##Gunicorn Setup
+```bash
+pip install gunicorn
+gunicorn -w 3 -b 127.0.0.1:5000 app:app
+```
+## Systemd Service
+create file
+```bash
+sudo nano /etc/systemd/system/flask-app.service
+```
+## Service Config
+```bash
+[Unit]
+Description=Flask App
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/var/www/flask-app
+Environment="PATH=/var/www/flask-app/venv/bin"
+ExecStart=/var/www/flask-app/venv/bin/gunicorn -w 3 -b 127.0.0.1:5000 app:app
+
+[Install]
+WantedBy=multi-user.target
+```
+## Start Service
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable flask-app
+sudo systemctl start flask-app
+```
+## Nginx Configuration
+```bash
+server {
+    listen 80;
+
+    location / {
+        proxy_pass http://127.0.0.1:5000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+```
+## Enable
+```bash
+sudo rm /etc/nginx/sites-enabled/default
+sudo ln -s /etc/nginx/sites-available/flask-app /etc/nginx/sites-enabled
+
+sudo nginx -t
+sudo systemctl restart nginx
 ```
 
----
+## CI/CD Pipeline
+```bash
+.github/workflows/deploy.yml
+```
+![CI/CD Pipeline](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/deploy.png)
 
-## Screenshots
+## GitHub Secrets
+Add in GitHub → Settings → Secrets
+```bash
+STAGING_HOST
+```
+```bash
+STAGING_USER
+```
+```bash
+STAGING_SSH_KEY
+```
+```bash
+MONGO_URI
+```
+![GitHub Secrets](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/action.png)
 
-**Home Page**
-Lists all students with Edit/Delete buttons.
-- <img width="1902" height="607" alt="image" src="https://github.com/user-attachments/assets/a58a6a6d-4978-4769-8074-232e4d31e69d" />
-
-
-**Add Student**
-Form to add a new student.
-- <img width="1897" height="801" alt="image" src="https://github.com/user-attachments/assets/d65d25c3-ebb5-410a-adb1-e130ad7c5878" />
-
-
-**Update Student**
-Form pre-filled with student details.
-- <img width="1905" height="897" alt="image" src="https://github.com/user-attachments/assets/04febf01-879f-431f-ab07-abcfb993acf1" />
-
-
-
----
-
-## Notes
-
-* Make sure MongoDB is running and accessible via the URI in `.env`
-* Delete action includes a confirmation page to prevent accidental deletion
-* Uses `ObjectId` from `bson` to work with MongoDB document IDs
-
----
-
-
----
-
-
+## Deployment Flow
+1. Push to staging branch
+2. GitHub Actions runs CI
+3. Deploys to EC2
+4. Restarts Flask service
+5. Nginx serves app
 
