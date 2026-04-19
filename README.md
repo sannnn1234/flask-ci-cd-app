@@ -16,3 +16,14 @@ flask-app/
 │── test_app.py
 │── Jenkinsfile
 ```
+## Local Setup
+```bash
+git clone https://github.com/your-username/flask-ci-cd-app.git
+cd flask-ci-cd-app
+
+python3 -m venv venv
+source venv/bin/activate
+
+pip install -r requirements.txt
+python3 app.py
+```
