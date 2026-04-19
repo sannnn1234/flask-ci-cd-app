@@ -6,13 +6,11 @@ using both Jenkins and GitHub Actions.
 
 ## Project Structure
 flask-app/
-├── app.py
-├── requirements.txt
-├── Jenkinsfile
-├── .github/
-│   └── workflows/
-│       └── ci-cd.yml
-├── tests/
-│   └── test_app.py
-├── .env
-└── README.md
+│── app.py
+│── requirements.txt
+│── .env
+│── templates/
+│── .github/workflows/deploy.yml
+│── start_flask.sh
+│── test_app.py
+│── Jenkinsfile
