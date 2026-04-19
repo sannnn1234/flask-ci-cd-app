@@ -119,3 +119,20 @@ MONGO_URI
 
 ![Deployment Flow](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/stagings.png)
 
+## Access App
+```bash
+http://<EC2-PUBLIC-IP>
+```
+![Access App](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/aws.png)
+
+## Final Output
+✔ CI/CD fully automated ✔ Flask app deployed ✔ Nginx reverse proxy working
+
+## Jenkins CI/CD Pipeline
+🔹 Stages
+1. Install Dependencies
+2. Lint & Security (pylint + bandit)
+3. Run Tests (pytest)
+4. Deploy Staging (branch: staging)
+5. Deploy Production (branch: main)
+
