@@ -88,4 +88,5 @@ sudo systemctl restart nginx
 ```bash
 .github/workflows/deploy.yml
 ```
+![CI/CD Pipeline](https://raw.githubusercontent.com/sannnn1234/flask-ci-cd-app/main/Screenshot/deploy.png)
 
