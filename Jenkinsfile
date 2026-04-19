@@ -47,7 +47,7 @@ pipeline {
                         if [ ! -d "$APP_DIR" ]; then
                             sudo mkdir -p "$APP_DIR"
                             sudo chown -R ubuntu:ubuntu "$APP_DIR"
-                            git clone -b staging https://github.com/Avinashsain/flask-ci-cd-app.git "$APP_DIR"
+                            git clone -b staging https://github.com/sannnn1234/flask-ci-cd-app.git "$APP_DIR"
                             cd "$APP_DIR"
                         else
                             cd "$APP_DIR"
@@ -85,7 +85,7 @@ pipeline {
         }
         stage('Deploy Production') {
             when {
-                branch 'master'
+                branch 'main'
             }
             steps {
                 sshagent(['prod-ssh']) {
@@ -97,7 +97,7 @@ pipeline {
                         if [ ! -d "$APP_DIR" ]; then
                             sudo mkdir -p "$APP_DIR"
                             sudo chown -R ubuntu:ubuntu "$APP_DIR"
-                            git clone -b master https://github.com/Avinashsain/flask-ci-cd-app.git "$APP_DIR"
+                            git clone -b master https://github.com/sannnn1234/flask-ci-cd-app.git "$APP_DIR"
                             cd "$APP_DIR"
                         else
                             cd "$APP_DIR"
